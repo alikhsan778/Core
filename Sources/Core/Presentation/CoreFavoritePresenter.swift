@@ -8,7 +8,10 @@
 import SwiftUI
 import Combine
 
-public class CoreFavoritePresenter<Request, Response, Interactor: FavoriteCoreUseCase>: CorePresenter
+public class CoreFavoritePresenter<
+  Request,
+  Response,
+  Interactor: FavoriteCoreUseCase>: CorePresenter
 where Interactor.Request == Request,
       Interactor.Response == Response {
 
@@ -27,8 +30,8 @@ where Interactor.Request == Request,
       .sink(receiveCompletion: { completion in
         self.loadingState = false
         switch completion {
-          case .failure(let error): self.errorMessage = error.localizedDescription
-          default: break
+        case .failure(let error): self.errorMessage = error.localizedDescription
+        default: break
         }
       },
       receiveValue: { response in

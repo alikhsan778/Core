@@ -24,4 +24,3 @@ where R.Request == Request, R.Response == Response {
     return _repository.execute(request: request)
   }
 }
-

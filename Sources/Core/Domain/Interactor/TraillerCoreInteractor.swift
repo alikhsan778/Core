@@ -7,7 +7,11 @@
 
 import Combine
 
-public struct TraillerCoreInteractor<Request, DataPoster, MovieTitle, Response, R: TraillerRepository>: TraillerCoreUseCase
+public struct TraillerCoreInteractor<
+  Request,
+  DataPoster,
+  MovieTitle,
+  Response, R: TraillerRepository>: TraillerCoreUseCase
 where R.Request == Request,
       R.DataPoster == DataPoster,
       R.Response == Response {

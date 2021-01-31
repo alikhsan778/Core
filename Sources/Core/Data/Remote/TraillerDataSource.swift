@@ -13,4 +13,3 @@ public protocol TraillerDataSource {
 
   func executeTraillerView(request: Request?) -> AnyPublisher<Response, Error>
 }
-

@@ -20,21 +20,40 @@ where Interactor.Request == Request,
     _useCase = useCase
   }
   
-  public func getDetailMovie(request: Request?,completion: @escaping(Bool) -> Void) {
+  public func getDetailMovie(
+    request: Request?,
+    completion: @escaping(Bool) -> Void) {
     loadingState = true
-    _useCase.executeDetail(request: request) { (result) in
-      DispatchQueue.main.async {
+    _useCase.executeDetail(request: request)
+      .receive(on: RunLoop.main)
+      .sink(receiveCompletion: { result in
         self.loadingState = false
         switch result {
-          case .Success(let detailMovie):
-            self.detailMovie = detailMovie
-            completion(true)
-          case .Error(let errorMessage) :
-            self.errorMessage = errorMessage
-            completion(false)
+        case .failure(let error):
+          self.errorMessage = error.localizedDescription
+          debugPrint(error.localizedDescription)
+          completion(false)
+        default: break
         }
-      }
-    }
+      }, receiveValue: { response in
+        self.detailMovie = response
+        completion(true)
+      })
+      .store(in: &cancellable)
+
+//    _useCase.executeDetail(request: request) { (result) in
+//      DispatchQueue.main.async {
+//        self.loadingState = false
+//        switch result {
+//        case .Success(let detailMovie):
+//          self.detailMovie = detailMovie
+//          completion(true)
+//        case .Error(let errorMessage):
+//          self.errorMessage = errorMessage
+//          completion(false)
+//        }
+//      }
+//    }
   }
   
   public func makeFavoriteMovie (request: Request?, state: Bool) {
@@ -44,8 +63,8 @@ where Interactor.Request == Request,
       .sink(receiveCompletion: { completion in
         self.loadingState = false
         switch completion {
-          case .failure(let error): self.errorMessage = error.localizedDescription
-          default: break
+        case .failure(let error): self.errorMessage = error.localizedDescription
+        default: break
         }
       },
       receiveValue: { _ in })

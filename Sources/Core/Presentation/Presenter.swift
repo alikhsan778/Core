@@ -26,8 +26,8 @@ where Interactor.Request == Request,
       .sink(receiveCompletion: { completion in
         self.loadingState = false
         switch completion {
-          case .failure(let error): self.errorMessage = error.localizedDescription
-          default: break
+        case .failure(let error): self.errorMessage = error.localizedDescription
+        default: break
         }
       }, receiveValue: { response in
         self.data = response

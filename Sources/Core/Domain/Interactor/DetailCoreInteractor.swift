@@ -20,8 +20,8 @@ where R.Request == Request,
     _dataPoster = dataPoster
   }
 
-  public func executeDetail(request: Request?, completion: @escaping (CoreResults<Response, String>) -> Void) {
-    _repository.executeDetail(request: request, dataPoster: _dataPoster ) { result in completion(result)}
+  public func executeDetail(request: Request?) -> AnyPublisher<Response, Error> {
+    return _repository.executeDetailMovie(request: request, dataPoster: _dataPoster)
   }
 
   public func executeMakeFavorite(request: Request?, state: Bool) -> AnyPublisher<Bool, Error> {

@@ -12,7 +12,7 @@ public protocol DetailCoreUseCase {
   associatedtype DataPoster
   associatedtype Response
 
-  func executeDetail(request: Request?, completion: @escaping(CoreResults<Response, String>) -> Void)
+  func executeDetail(request: Request?) -> AnyPublisher<Response, Error>
   func executeMakeFavorite(request: Request?, state: Bool) -> AnyPublisher<Bool, Error>
   func getDataPoster() -> DataPoster
 }

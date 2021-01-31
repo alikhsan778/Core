@@ -30,7 +30,7 @@ where Interactor.Request == Request,
     loadingState = true
     _useCase.executeTrailler(request: request)
       .receive(on: RunLoop.main)
-      .sink(receiveCompletion: { completion in
+      .sink(receiveCompletion: { _ in
         self.loadingState = false
       },
       receiveValue: { result in
@@ -39,7 +39,7 @@ where Interactor.Request == Request,
       .store(in: &cancellable)
   }
 
-  public func getMovieTitle() -> MovieTitle{
+  public func getMovieTitle() -> MovieTitle {
     return _useCase.getMovieTitle()
   }
 

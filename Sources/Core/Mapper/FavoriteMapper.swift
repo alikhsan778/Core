@@ -14,4 +14,3 @@ public protocol FavoriteMapper {
   func transformRespToEntity(response: Response) -> ObjEntity
   func transformEntityToDomain(entity: ArrEntity) -> Domain
 }
-

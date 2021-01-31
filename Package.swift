@@ -10,11 +10,12 @@ let package = Package(
     // Products define the executables and libraries a package produces, and make them visible to other packages.
     .library(
       name: "Core",
-      targets: ["Core"]),
+      targets: ["Core"])
   ],
   dependencies: [
     // Dependencies declare other packages that this package depends on.
-    .package(name:"Realm", url: "https://github.com/realm/realm-cocoa.git", from: "5.4.4")
+    .package(name:"Realm", url: "https://github.com/realm/realm-cocoa.git", from: "5.4.4"),
+    .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.2.0"))
   ],
   targets: [
     // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -22,10 +23,11 @@ let package = Package(
     .target(
       name: "Core",
       dependencies: [
-        .product(name: "RealmSwift", package: "Realm")
+        .product(name: "RealmSwift", package: "Realm"),
+        "Alamofire"
       ]),
     .testTarget(
       name: "CoreTests",
-      dependencies: ["Core"]),
+      dependencies: ["Core"])
   ]
 )

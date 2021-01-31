@@ -9,4 +9,3 @@ public enum CoreResults <T, F> {
   case Success(T)
   case Error(F)
 }
-

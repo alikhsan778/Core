@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum DatabaseError: LocalizedError {
+public enum DatabaseError: LocalizedError {
   case invalidInstance
   case requestFailed
 
-  var errorDescription: String? {
+  public var errorDescription: String? {
     switch self {
-      case .invalidInstance: return "Database can't instance."
-      case .requestFailed: return "Your request failed."
+    case .invalidInstance: return "Database can't instance."
+    case .requestFailed: return "Your request failed."
     }
   }
 }

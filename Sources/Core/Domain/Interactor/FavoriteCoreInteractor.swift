@@ -9,8 +9,7 @@ import Combine
 
 public struct FavoriteCoreInteractor<Request, Response, R: FavoriteRepository>: FavoriteCoreUseCase
 where R.Request == Request,
-      R.Response == Response
-{
+      R.Response == Response {
   private let _repository: R
   public init(repository: R) {
     self._repository = repository
