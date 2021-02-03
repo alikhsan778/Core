@@ -11,10 +11,6 @@ public protocol DetailRepository {
   associatedtype DataPoster
   associatedtype Response
 
-  func executeFavorite(
-    dataPoster: DataPoster,
-    completion: @escaping(CoreResults<Bool, Error>) -> Void)
-
   func executeMakeFavorite(
     request: Request?,
     for Bind: DataPoster,
