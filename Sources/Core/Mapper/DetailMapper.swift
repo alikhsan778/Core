@@ -16,7 +16,6 @@ public protocol DetailMapper {
     creditResponse: CreditResponse?,
     movieFavorite: Bool) -> Domain
 
-  func transformDetailEntityToDomain(entity: Entity) -> Domain
   func transformDetailEntityToDomain(entity: Entity, movieFavorite: Bool) -> Domain
   func transformDetailDomainToEntity(domain: Domain) -> Entity
 }
